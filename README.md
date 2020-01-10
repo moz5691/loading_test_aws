@@ -1,4 +1,4 @@
-### Locust Load Testing 
+# Locust Load Testing 
 
 Usage
 ===
