@@ -25,7 +25,7 @@ and its key pair is stored (unencrypted) in your local memory.  This should be a
 * AMI type can be adjusted depending on the workload.  Recommend that master instance is bigger size than slave instances.
 
 ### 
-** In case of failing to get public IP address for the host
+#### In case of failing to get public IP address for the host
 Depending on your VPC environment, you may not have public IPs ready for EC2 instance.  
 You can use private ip instead as below for both master and slave EC2 instances.  
 
