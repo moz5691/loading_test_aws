@@ -1,10 +1,3 @@
-# AWS provider -
-provider "aws" {
-  region = var.region
-  shared_credentials_file = "$HOME/.aws/credentials"
-  profile = "default"
-}
-
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -20,8 +13,9 @@ module "nodes" {
   name                 = var.env_name
   subnet_id            = element(module.vpc.public_subnets, 0)
   vpc_id               = module.vpc.vpc_id
-  worker_instance_type = "t2.micro"
-  ami                  = "ami-00eb20669e0990cb4"
-  locust_command       = "/usr/local/bin/locust -f /home/ec2-user/locustfile.py --host=http://example.com"
+  worker_instance_type = var.worker_instance_type
+  master_instance_type = var.master_instance_type
+  ami                  = var.ami
+  locust_command       = var.locust_command
   number_of_workers    = var.number_of_workers
 }

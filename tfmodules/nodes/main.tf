@@ -50,7 +50,7 @@ resource "aws_security_group_rule" "allow_cross_comms" {
 # setup master locust stack via cloudformation as we can load large files onto the instances.
 resource "aws_instance" "master" {
   ami                    = var.ami
-  instance_type          = "t2.micro"
+  instance_type          = var.master_instance_type
   key_name               = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.nodes.id]
   subnet_id              = var.subnet_id

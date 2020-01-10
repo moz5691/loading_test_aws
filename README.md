@@ -23,3 +23,19 @@ Note
 and its key pair is stored (unencrypted) in your local memory.  This should be acceptable as this is intended for loading test in development environment. 
 * If you see an error for duplicated SSH key pair error, you may change `env_name` in `variables.tf`. It is likely the same name of key-pair already exists in AWS.
 * AMI type can be adjusted depending on the workload.  Recommend that master instance is bigger size than slave instances.
+
+### 
+** In case of failing to get public IP address for the host
+Depending on your VPC environment, you may not have public IPs ready for EC2 instance.  
+You can use private ip instead as below for both master and slave EC2 instances.  
+
+```shell script
+  connection {
+    host        = self.public_ip   <--- change this to "self.private_ip"
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = tls_private_key.temp.private_key_pem
+  }
+```
+
+
